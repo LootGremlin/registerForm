@@ -1,7 +1,8 @@
-# registerForm
+# Register Form
 A register form containing or showing the sins of web app
 
 The sample folder contains the following:
+
 1.) registrationForm.php
 2.) registrationHandler.php
 3.) style.css
