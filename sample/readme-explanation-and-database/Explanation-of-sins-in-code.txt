@@ -1,0 +1,15 @@
+EXPLANATION OF THE SINS FOUND IN 'registrationForm.php'
+
+------------------------------------------------ SIN # 1 ------------------------------------------------------
+/* The code below addresses the sin of modifiable cookies. I've set a cookie where it will store the ID of the newly added account for verification and authentication purposes. If in an instance where if insert to database is successful, it would direct the user instantly to his or her account homepage. This is dangerously modifiable. And without any presence tokens, the attacker can easily manipulate accessing of accounts just by editing the cookie. Also the IDs in my database is auto incremented. This makes it a very predictable cookie. */
+
+<?php elseif($_POST['validate'] != ''): ?>
+            <?php setcookie($cookie_id, $_POST['validate']); ?>
+
+------------------------------------------------ SIN # 2 ------------------------------------------------------
+/* The code previously mentioned also addresses the sin of not using HTTP only and secure tags. This cookie is not set as HTTP only and secure. This cookie is therefore accessible by scripting languages, such as Javascript and could be at risk for identity thefts through XSS attacks. */
+
+------------------------------------------------ SIN # 3 ------------------------------------------------------
+/* The code below addresses the sin of using hidden inputs for verification and authentication. Where it contains important data and it is not used as a counter. This makes it a sin as it is vulnerable to attackers as this information can be viewed easily by using the View Source option in their browsers. They are then able to create malicious versions to send to the server */
+
+<input type="hidden" name="validate" id = "stat" value = <?php echo isset($_POST['validate'])? $_POST['validate'] : '';?>><br>
